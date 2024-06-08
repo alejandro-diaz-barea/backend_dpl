@@ -1,0 +1,52 @@
+
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: test_db
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bd_easeSell
+      - MYSQL_PASSWORD=root
+    networks:
+      - test_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: test_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    networks:
+      - test_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    depends_on:
+      - db
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+networks:
+  test_network:
+    driver: bridge
+
+volumes:
+  db_data:
