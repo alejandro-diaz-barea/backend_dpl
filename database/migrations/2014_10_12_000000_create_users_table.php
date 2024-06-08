@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone_number')->unique();
             $table->timestamps();
-            $table->string('logo_path');
+            $table->text('logo_path');
             $table->boolean('is_banned')->default(false);
 
         });

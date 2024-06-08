@@ -54,9 +54,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear la cuenta', 'message' => $e->getMessage()], 500);
         }
-
-
-
     }
 
 
