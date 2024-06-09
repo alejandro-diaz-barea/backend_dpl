@@ -32,17 +32,19 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
             'permissions' => [
                 'file' => [
-                    'public' => 0777,
+                    'public' => 0664,
                     'private' => 0600,
                 ],
                 'dir' => [
-                    'public' => 0777,
+                    'public' => 0775,
                     'private' => 0700,
-                 ],
+                ],
             ],
+            'visibility' => 'public',
         ],
 
         'public' => [
