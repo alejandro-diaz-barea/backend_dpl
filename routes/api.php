@@ -21,9 +21,11 @@ use App\Http\Controllers\Api\V1\CategoryController;
 */
 
 Route::prefix('v1')->group(function () {
-    // Route::get('/any-route', function () {
-    //     Artisan::call('storage:link');
-    // });
+
+    Route::get('/create-symlink', function (){
+        symlink(storage_path('/app/public'), public_path('storage'));
+    });
+
 
     // Rutas de autenticación
     Route::prefix('auth')->group(function () {
