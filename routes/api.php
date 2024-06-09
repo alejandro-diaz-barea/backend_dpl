@@ -35,7 +35,7 @@ Route::prefix('v1')->group(function () {
     Route::put('users', [UserController::class, 'update']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
     Route::post('users/upload-photo', [UserController::class, 'uploadPhoto']);
-
+  
 
     Route::post('users/{id}/ban', [UserController::class, 'banUser']);
     Route::post('users/{id}/change-role', [UserController::class, 'changeUserRole']);
