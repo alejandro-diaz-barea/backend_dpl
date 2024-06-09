@@ -24,6 +24,8 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/create-symlink', function (){
         symlink(storage_path('/app/public'), public_path('storage'));
+        echo "Symlink Created. Thanks";
+
     });
 
 
