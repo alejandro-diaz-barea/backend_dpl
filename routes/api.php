@@ -21,6 +21,10 @@ use App\Http\Controllers\Api\V1\CategoryController;
 */
 
 Route::prefix('v1')->group(function () {
+    Route::get('/any-route', function () {
+        Artisan::call('storage:link');
+    });
+    
     // Rutas de autenticación
     Route::prefix('auth')->group(function () {
         Route::post('login', [AuthController::class, 'login']);
@@ -35,7 +39,7 @@ Route::prefix('v1')->group(function () {
     Route::put('users', [UserController::class, 'update']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
     Route::post('users/upload-photo', [UserController::class, 'uploadPhoto']);
-  
+
 
     Route::post('users/{id}/ban', [UserController::class, 'banUser']);
     Route::post('users/{id}/change-role', [UserController::class, 'changeUserRole']);
