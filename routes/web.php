@@ -23,5 +23,4 @@ Route::get('/create-symlink', function () {
 Route::get('/any-route', function () {
     Artisan::call('storage:link');
     return "Symlink created successfully.";
-
   });
